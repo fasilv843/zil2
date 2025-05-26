@@ -1,28 +1,29 @@
 
 <div>
-  <h1>Registration</h1>
+  <h1 >Registration</h1>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
         <div>
-          <label for="first-name">First Name</label>
-          <input type="text" formControlName="firstName" placeholder="John">
-          @let firstNameControl = form.controls.firstName;
-          @let firstNameErr = firstNameControl.errors;
-          @if(firstNameErr && (firstNameControl.touched || firstNameControl.dirty)) {
-            @if (firstNameErr['required']) {
-              <small>First Name is required</small>
+            @let firstNameControl = form.controls.firstName;
+            @let firstNameErr = firstNameControl.errors;
+
+            <label for="first-name">First Name</label>
+            <input appError [control]="firstNameControl" [errors]="firstNameErr" type="text" formControlName="firstName" placeholder="John">
+            @if(firstNameErr && (firstNameControl.touched || firstNameControl.dirty)) {
+                @if (firstNameErr['required']) {
+                <small>First Name is required</small>
+                }
+                @if (firstNameErr['minlength'] && firstNameErr['maxlength']) {
+                @let requiredLength = firstNameErr['minlength']['requiredLength'];
+                <small>First Name field only allow exactly {{ requiredLength }} characters</small>
+                }
             }
-            @if (firstNameErr['minlength'] && firstNameErr['maxlength']) {
-              @let requiredLength = firstNameErr['minlength']['requiredLength'];
-              <small>First Name field only allow exactly {{ requiredLength }} characters</small>
-            }
-          }
         </div>
         <div>
-          <label for="first-name">Last Name</label>
-          <input type="text" formControlName="lastName" placeholder="Smit">
-          @let lastNameControl = form.controls.lastName;
-          @let lastNameErr = lastNameControl.errors;
+            @let lastNameControl = form.controls.lastName;
+            @let lastNameErr = lastNameControl.errors;
+          <label for="last-name">Last Name</label>
+          <input appError [control]="lastNameControl" [errors]="lastNameErr" type="text" formControlName="lastName" placeholder="Smit">
           @if(lastNameErr && (lastNameControl.touched || lastNameControl.dirty)) {
             @if (lastNameErr['required']) {
               <small>Last Name is required</small>

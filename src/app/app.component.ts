@@ -1,11 +1,12 @@
 import { JsonPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ErrorDirective } from './directives/error.directive';
 
 
 @Component({
   selector: 'app-root',
-  imports: [ReactiveFormsModule, JsonPipe],
+  imports: [ReactiveFormsModule, ErrorDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
